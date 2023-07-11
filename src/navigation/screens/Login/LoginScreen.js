@@ -31,14 +31,6 @@ export default function LoginScreen({ navigation })
             <View style={styles.top}>
                 <Text style={styles.title}>Pausas activas</Text>
             </View>
-            <View style={styles.center}>
-                <TouchableOpacity style={styles.btnLogin} onPress={onContinue}>
-                    <Text style={styles.textLogin}>Iniciar sesión</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.btnRegister} onPress={onContinue}>
-                    <Text style={styles.textRegister}>Registro</Text>
-                </TouchableOpacity>
-            </View>
             <TouchableOpacity style={styles.footer} onPress={onContinue}>
                 <Text style={styles.textFooter}>Continuar como invitado</Text>
             </TouchableOpacity>
@@ -58,7 +50,8 @@ const styles = StyleSheet.create({
     top: {
         alignItems: 'center',
         justifyContent: 'flex-end',
-        marginVertical: 15
+        marginVertical: 15,
+        marginBottom: 50
     },
     logo: {
         width: '100%',
