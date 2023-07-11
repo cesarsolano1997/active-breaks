@@ -27,7 +27,7 @@ export default function Onboarding({ navigation })
                     }, 200)
                 } else
                 {
-                    flatListRef.current.scrollToIndex({
+                    flatListRef.current?.scrollToIndex({
                         index: i,
                         animated: true
                     })
