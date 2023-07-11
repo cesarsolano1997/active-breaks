@@ -10,6 +10,7 @@ import
   Animated,
   TouchableOpacity,
   FlatList,
+  Platform,
 
 } from 'react-native'
 import React from 'react'
@@ -108,8 +109,8 @@ export default function ActivityOneScreen({ navigation })
   })
   return (
     <>
-      <View style={{ backgroundColor: colors.black, 
-    paddingTop: StatusBar.currentHeight + 20}}>
+      <View style={{ backgroundColor: colors.black, paddingHorizontal:10, 
+    paddingTop: StatusBar.currentHeight +  + (Platform.OS=='ios' ? 55 : 0),}}>
         <TouchableOpacity onPress={() => { navigation.navigate(Stacks.Main) }}>
           <Text style={{ color: 'white', fontSize: 16 }}>{'<- Regresar al inicio'}</Text>
         </TouchableOpacity>

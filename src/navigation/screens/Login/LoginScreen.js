@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, StatusBar } from 'react-native'
+import { StyleSheet, Text, View, StatusBar, Platform } from 'react-native'
 import React from 'react'
 import { TouchableOpacity, ImageBackground, Image } from 'react-native'
 import Stacks from '../../../global/stacks'
@@ -29,10 +29,10 @@ export default function LoginScreen({ navigation })
                 </View>
             </ImageBackground >
             <View style={styles.top}>
-                <Text style={styles.title}>Pausas activas</Text>
+                <Text style={styles.title}>Reactivate</Text>
             </View>
             <TouchableOpacity style={styles.footer} onPress={onContinue}>
-                <Text style={styles.textFooter}>Continuar como invitado</Text>
+                <Text style={styles.textFooter}>COMENZAR</Text>
             </TouchableOpacity>
         </View>
     )
@@ -41,7 +41,7 @@ export default function LoginScreen({ navigation })
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: StatusBar.currentHeight,
+        marginTop: StatusBar.currentHeight + (Platform.OS=='ios' ? 55 : 0),
         marginHorizontal: 15
     },
     header: {
@@ -108,11 +108,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     footer: {
+        borderWidth:2,
+        borderRadius:10,
+        borderColor:'white',
+        paddingVertical:10,
+        paddingHorizontal:10,
+        margin:10,
+        backgroundColor:'#3ba9e6',
         alignItems: 'center',
         marginBottom: 20
     },
     textFooter: {
+    fontSize:16,
+    color:'white',
         fontFamily: 'Roboto',
-        textDecorationLine: 'underline'
     }
 })
