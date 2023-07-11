@@ -1,39 +1,45 @@
 import { StyleSheet, Text, View, StatusBar } from 'react-native'
 import React from 'react'
 import { TouchableOpacity, ImageBackground, Image } from 'react-native'
+import Stacks from '../../../global/stacks'
 
-export default function LoginScreen()
+export default function LoginScreen({ navigation })
 {
+    const onContinue = () => {
+        navigation.navigate(Stacks.Main)
+    }
+
     return (
         <View style={styles.container}>
-             <ImageBackground 
-                    source={require('../../../assets/login.jpg')}
-                    style={{
-                        width: '100%',
-                        height: "100%",
-                    }}
-                />
-            <View style={styles.header}>
-                <View style={styles.logo}>
-                    <Image
-                        source={require('../../../assets/casuarinas-logo.png')}
-                        style={styles.image}
-                    />
+            <ImageBackground
+                source={require('../../../assets/login.jpg')}
+                style={{
+                    width: '100%',
+                    height: 450,
+                    opacity: 1
+                }}
+            >
+                <View style={styles.header}>
+                    <View style={styles.logo}>
+                        <Image
+                            source={require('../../../assets/casuarinas-logo.png')}
+                            style={styles.image}
+                        />
+                    </View>
                 </View>
-            </View>
+            </ImageBackground >
             <View style={styles.top}>
-               
                 <Text style={styles.title}>Pausas activas</Text>
             </View>
             <View style={styles.center}>
-                <TouchableOpacity style={styles.btnLogin}>
-                    <Text style={styles.textLogin}>Login</Text>
+                <TouchableOpacity style={styles.btnLogin} onPress={onContinue}>
+                    <Text style={styles.textLogin}>Iniciar sesión</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btnRegister}>
+                <TouchableOpacity style={styles.btnRegister} onPress={onContinue}>
                     <Text style={styles.textRegister}>Registro</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.footer}>
+            <TouchableOpacity style={styles.footer} onPress={onContinue}>
                 <Text style={styles.textFooter}>Continuar como invitado</Text>
             </TouchableOpacity>
         </View>
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
     top: {
         alignItems: 'center',
         justifyContent: 'flex-end',
-        height: '15%'
+        marginVertical: 15
     },
     logo: {
         width: '100%',
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         height: 56
-    }, 
+    },
     textRegister: {
         fontFamily: 'Roboto',
         fontWeight: '600',
@@ -105,7 +111,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         width: "100%",
-        height: '40%',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
