@@ -66,6 +66,7 @@ export default function MainScreen({ navigation })
                         onPress={() =>
                         {
                             setVisible(true)
+                            setStep(1)
                         }}
                     >
                         <Image
@@ -80,6 +81,7 @@ export default function MainScreen({ navigation })
                     <TouchableOpacity style={styles.activities} onPress={() =>
                     {
                         setVisible(true)
+                            setStep(1)
                     }}>
                         <Image
                             source={require('../../../assets/onboarding_2.jpg')}
@@ -93,6 +95,7 @@ export default function MainScreen({ navigation })
                     <TouchableOpacity style={styles.activities} onPress={() =>
                     {
                         setVisible(true)
+                        setStep(1)
                     }}>
                         <Image
                             source={require('../../../assets/onboarding_3.jpg')}
@@ -109,6 +112,7 @@ export default function MainScreen({ navigation })
                     <TouchableOpacity style={styles.activities} onPress={() =>
                     {
                         setVisible(true)
+                        setStep(1)
                     }}>
                         <Image
                             source={require('../../../assets/onboarding_4.jpg')}
