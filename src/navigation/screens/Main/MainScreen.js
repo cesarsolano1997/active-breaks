@@ -6,6 +6,7 @@ import { FlatList } from 'react-native'
 import { windowWidth } from '../../../global/tools'
 import YoutubePlayer from 'react-native-youtube-iframe'
 import { Audio } from 'expo-av';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native'
 
 const DATA = [{
     key: 1,
@@ -113,6 +114,8 @@ export default function MainScreen({ navigation })
 
     const [sound, setSound] = React.useState();
 
+    const isFocused = useIsFocused()
+
     async function playSound() {
         console.log('Loading Sound');
         const { sound } = await Audio.Sound.createAsync( require('../../../assets/music/intro.mp3')
@@ -135,6 +138,7 @@ export default function MainScreen({ navigation })
             }
           : undefined;
       }, [sound]);
+     
 
     return (
         <View style={styles.container}>
@@ -195,6 +199,7 @@ export default function MainScreen({ navigation })
                 <View style={styles.right}>
                     <TouchableOpacity style={styles.activities} onPress={() =>
                     {
+                        sound.unloadAsync();
                         setVisible_4(true)
                     }}>
                         <Image
@@ -283,6 +288,7 @@ export default function MainScreen({ navigation })
                             }}
                             onPress={() =>
                             {
+                                sound.unloadAsync();
                                 setVisible(false)
                                 navigation.navigate(Stacks.ActivityOne)
                             }}>
@@ -369,6 +375,7 @@ export default function MainScreen({ navigation })
                             {
                                 setVisible(false)
                                 navigation.navigate(Stacks.ActivityOne)
+                                sound.unloadAsync();
                             }}>
                             <Text style={{ color: 'white', fontFamily: 'Roboto', fontSize: 16 }}>Iniciar cronómetro</Text>
                         </TouchableOpacity>
