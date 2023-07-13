@@ -5,6 +5,8 @@ import Modal from 'react-native-modal'
 import { FlatList } from 'react-native'
 import { windowWidth } from '../../../global/tools'
 import YoutubePlayer from 'react-native-youtube-iframe'
+import { Audio } from 'expo-av';
+
 const DATA = [{
     key: 1,
     description: 'Estira frente al ordenador de 10 a 20 segundos 2 veces',
@@ -108,6 +110,31 @@ export default function MainScreen({ navigation })
 
 
     const [visible_4, setVisible_4] = React.useState(false)
+
+    const [sound, setSound] = React.useState();
+
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../../../assets/music/intro.mp3')
+        );
+        setSound(sound);
+    
+        console.log('Playing Sound');
+        await sound.playAsync();
+      }
+
+      React.useEffect(() => {
+        playSound()
+      },[])
+
+      React.useEffect(() => {
+        return sound
+          ? () => {
+              console.log('Unloading Sound');
+              sound.unloadAsync();
+            }
+          : undefined;
+      }, [sound]);
 
     return (
         <View style={styles.container}>
