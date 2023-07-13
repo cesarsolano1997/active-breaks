@@ -54,10 +54,12 @@ export default function ActivityOneScreen({ navigation })
     }
   })
 
+  const soundRef = React.useRef(null)
 
   const animation = React.useCallback(() =>
   {
     textInputAnimation.setValue(duration)
+    playSoundCount()
     Animated.sequence([
       Animated.timing(buttonAnimation, {
         toValue: 1,
@@ -85,7 +87,8 @@ export default function ActivityOneScreen({ navigation })
     ]).start(() =>
     {
       Vibration.cancel()
-    
+      // sound.unloadAsync();
+      soundRef.current?.unloadAsync();
       playSound().then(() => {
         Vibration.vibrate()
       })
@@ -101,6 +104,14 @@ export default function ActivityOneScreen({ navigation })
     const { sound } = await Audio.Sound.createAsync( require('../../../assets/music/ring.mp3')
     );
 
+    await sound.playAsync();
+  }
+
+  async function playSoundCount() {
+    const { sound } = await Audio.Sound.createAsync( require('../../../assets/music/count.mp3')
+    );
+    // setSound(sound)
+    soundRef.current = sound
     await sound.playAsync();
   }
 
