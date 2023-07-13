@@ -16,6 +16,7 @@ import
 import React from 'react'
 import { windowWidth, windowHeight } from '../../../global/tools'
 import Stacks from '../../../global/stacks'
+import { Audio } from 'expo-av';
 
 const colors = {
   black: '#323F4E',
@@ -84,7 +85,10 @@ export default function ActivityOneScreen({ navigation })
     ]).start(() =>
     {
       Vibration.cancel()
-      Vibration.vibrate()
+    
+      playSound().then(() => {
+        Vibration.vibrate()
+      })
       Animated.timing(buttonAnimation, {
         toValue: 0,
         duration: 300,
@@ -92,6 +96,14 @@ export default function ActivityOneScreen({ navigation })
       }).start()
     })
   }, [duration])
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync( require('../../../assets/music/ring.mp3')
+    );
+
+    await sound.playAsync();
+  }
+
 
   const opacity = buttonAnimation.interpolate({
     inputRange: [0, 1],
